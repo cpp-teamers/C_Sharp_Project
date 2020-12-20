@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
-    class Manager
+    public class Manager : Employee
     {
+        public void DisplayManager()
+        {
+            DisplayEmployee();
+        }
     }
 }
