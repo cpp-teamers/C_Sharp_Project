@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
+    [Serializable]
     public class Employee : Person
     {
         public decimal Salary { get; set; }

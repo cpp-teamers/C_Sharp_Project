@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
+    [Serializable]
     public class Client : Person
     {
         public void DisplayClient()
