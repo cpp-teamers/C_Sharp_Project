@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Library1;
 
 
 namespace LibraryMenu
 {
-	class RapairManMenu
+	public class RepairManMenu
 	{
         public void StartMenu()
         {
-            Console.WriteLine("");
             Console.WriteLine(" ╒════════════════════════════════════════════╕");
-            Console.WriteLine(" │       We welcome you to the Happy_PC       │");
+            Console.WriteLine(" │    Welcome to system. Authorize please     │");
             Console.WriteLine(" │────────────────────────────────────────────│");
             Console.WriteLine(" │              1. Log in                     │");
             Console.WriteLine(" │              2. Exit                       │");
             Console.WriteLine(" ╘════════════════════════════════════════════╛");
         }
-
         public void WhenLoggedMenu(ref RepairMan repairMan)
         {
-            Console.WriteLine($"         Welcome, {repairMan.Name}!          ");
+            Console.WriteLine($"           Welcome, {repairMan.Name}!        ");
             Console.WriteLine("╒════════════════════════════════════════════╕");
             Console.WriteLine("│────────────────────────────────────────────│");
             Console.WriteLine("│           1. Display current task          │");
@@ -31,7 +25,6 @@ namespace LibraryMenu
             Console.WriteLine("│           3. Log out                       │");
             Console.WriteLine("╘════════════════════════════════════════════╛");
         }
-
         public void TaskReadynessOptionsMenu()
         {
             Console.WriteLine("╒════════════════════════════════════════════╕");
