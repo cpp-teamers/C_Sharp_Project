@@ -6,5 +6,7 @@ namespace ManagerModule
 {
     class ManagerDataManager
     {
+        
+    
     }
 }
