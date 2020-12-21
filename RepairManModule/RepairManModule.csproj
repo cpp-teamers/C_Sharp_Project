@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Library1\Library1.csproj" />
     <ProjectReference Include="..\LibraryMenu\LibraryMenu.csproj" />
   </ItemGroup>
 
