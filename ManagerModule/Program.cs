@@ -19,16 +19,18 @@ namespace ManagerModule
                 switch (dialog.ChoosenParametr())
                 {
                     case 1:
-                        /*do
+                        do
                         {
-                            if (Directory.Exists(@$"..\..\..\..\Data\clients\{dialog.LogInDialog()}")){
+                            string login = dialog.LogInDialog();
+                            if (Directory.Exists(@$"..\..\..\..\Data\managers\{login}"))
+                            {
 
                             }
                             else
                             {
 
                             }
-                        } while()*/
+                        } while()
                         break;
                     case 2:
                         ManagerMenu.exit = false;

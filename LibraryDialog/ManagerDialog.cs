@@ -26,9 +26,10 @@ namespace LibraryDialog
             return Convert.ToString(Console.ReadLine());
         }
 
-        //public string Password()
-        //{
-
-        //}
+        public string Password()
+        {
+            Console.Write("\n Input password => ");
+            return Convert.ToString(Console.ReadLine());
+        }
     }
 }
