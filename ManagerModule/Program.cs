@@ -1,6 +1,7 @@
 ﻿using System;
 using LibraryMenu;
 using LibraryDialog;
+using System.IO;
 
 namespace ManagerModule
 {
@@ -18,7 +19,16 @@ namespace ManagerModule
                 switch (dialog.ChoosenParametr())
                 {
                     case 1:
+                        /*do
+                        {
+                            if (Directory.Exists(@$"..\..\..\..\Data\clients\{dialog.LogInDialog()}")){
 
+                            }
+                            else
+                            {
+
+                            }
+                        } while()*/
                         break;
                     case 2:
                         ManagerMenu.exit = false;

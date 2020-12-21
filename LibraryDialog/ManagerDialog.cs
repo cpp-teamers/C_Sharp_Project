@@ -19,5 +19,16 @@ namespace LibraryDialog
             Console.Write("> Choose Params => ");
             return Convert.ToInt32(Console.ReadLine());
         }
+
+        public string LogInDialog()
+        {
+            Console.Write("\n Input login => ");
+            return Convert.ToString(Console.ReadLine());
+        }
+
+        //public string Password()
+        //{
+
+        //}
     }
 }

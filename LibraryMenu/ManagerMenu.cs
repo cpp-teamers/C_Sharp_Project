@@ -25,8 +25,8 @@ namespace LibraryMenu
         public void LogInMenu(Person person)
         {
             Console.Clear();
+            Console.WriteLine($"         Welcome, {person.Name}!            ");
             Console.WriteLine("╒════════════════════════════════════════════╕");
-           Console.WriteLine($"│         Welcome, {person.Name}!            │");
             Console.WriteLine("│                                            │");
             Console.WriteLine("│          1. Display not distributed orders │");
             Console.WriteLine("│          2. Distribute orders              │");
