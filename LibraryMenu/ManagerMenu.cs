@@ -36,16 +36,6 @@ namespace LibraryMenu
         }
 
 
-        public bool AllowContinue()
-        {
-            Console.Write("\n Continue?(y/n) => ");
-            return Convert.ToChar(Console.ReadLine()) == 'y';
-        }
-
-        public int ChoosenParametr()
-        {
-            Console.Write("> Choose Params => ");
-            return Convert.ToInt32(Console.ReadLine());
-        }
+        
     }
 }

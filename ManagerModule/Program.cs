@@ -1,5 +1,6 @@
 ﻿using System;
 using LibraryMenu;
+using LibraryDialog;
 
 namespace ManagerModule
 {
@@ -8,11 +9,13 @@ namespace ManagerModule
         static void Main(string[] args)
         {
             ManagerMenu menu = new ManagerMenu();
+            ManagerDialog dialog = new ManagerDialog();
+            
             do
             {
                 ManagerMenu.exit = true;
                 menu.StartMenu();
-                switch (menu.ChoosenParametr())
+                switch (dialog.ChoosenParametr())
                 {
                     case 1:
 
@@ -24,7 +27,7 @@ namespace ManagerModule
                         Console.WriteLine("!UNKNOWN PARAMS!");
                         break;
                 }
-            } while (ManagerMenu.exit && menu.AllowContinue());
+            } while (ManagerMenu.exit && dialog.AllowContinue());
         }
     }
 }
