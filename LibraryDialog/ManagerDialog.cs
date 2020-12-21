@@ -8,6 +8,6 @@ namespace LibraryDialog
 {
     class ManagerDialog
     {
-        // Для Влада
+        
     }
 }
