@@ -15,7 +15,7 @@ public class ClientMenu
         Console.WriteLine(" │              3. Show price list            │");
         Console.WriteLine(" ╘════════════════════════════════════════════╛");
     }
-    public void LogInMenu(Client client)
+    public void LogInMenu(ref Client client)
     {
         Console.WriteLine("╒════════════════════════════════════════════╕");
        Console.WriteLine($"│         Welcome, {client.Name}!            │");
@@ -24,5 +24,13 @@ public class ClientMenu
         Console.WriteLine("│           2. Show all my orders            │");
         Console.WriteLine("│           3. Log out                       │");
         Console.WriteLine("╘════════════════════════════════════════════╛");
+    }
+    public void FinishProgramm()
+    {
+        Console.WriteLine("");
+        Console.WriteLine("     ╒══════════════════════════════════════════════════════════════╕");
+        Console.WriteLine("     │ GoodBye. Thanks for choosing us. With best regards, Happy_PC │");
+        Console.WriteLine("     ╘══════════════════════════════════════════════════════════════╛");
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 }
