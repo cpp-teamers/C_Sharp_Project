@@ -6,7 +6,22 @@ namespace ClientModule
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // ПРОТОТИП 
+            char s = 'n';
+            // Создание классов
+            ClientMenu clientMenu = new ClientMenu();
+            do
+            {
+                Console.Clear();
+                clientMenu.StartMenu();
+                // 
+                Console.Write("   -> "); // Delete
+                s = Convert.ToChar(Console.ReadLine()); // Delete
+            } while (s == 'y');
+
+
+            // Finish
+            Console.WriteLine("\n Programm finished (0_0)");
         }
     }
 }
