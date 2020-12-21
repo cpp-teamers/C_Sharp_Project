@@ -23,6 +23,7 @@ namespace Library1
         public string Password { get; set; }
         public string Login { get; set; }
     }
+    [Serializable]
     public class Person
     {
         public string Name { get; set; }

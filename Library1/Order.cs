@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Library1
 {
     public enum OrderType { Diagnostics = 900, SoftwareRepair = 300, HardwareRepair = 600}
+    [Serializable]
     public class Order
     {
         public OrderType OrderType { get; set; }
