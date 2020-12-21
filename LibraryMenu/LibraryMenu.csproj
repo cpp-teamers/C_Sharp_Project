@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientMenu.cs" />
+    <Compile Include="ManagerMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepairManMenu.cs" />
   </ItemGroup>

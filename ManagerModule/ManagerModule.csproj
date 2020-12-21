@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryDialog\LibraryDialog.csproj" />
+    <ProjectReference Include="..\LibraryMenu\LibraryMenu.csproj" />
+  </ItemGroup>
+
 </Project>
