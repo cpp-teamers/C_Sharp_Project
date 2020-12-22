@@ -11,11 +11,11 @@ namespace ClientModule
     public class ClientDataManager
     {
         private BinaryFormatter bf = new BinaryFormatter();
-        public void Registration()
+        private Client client = new Client();
+        public void Registration(Client client)
         {
             Random random = new Random();
             ClientDialog cd = new ClientDialog();
-            Client client = new Client();
 
             string LoginId = Convert.ToString(random.Next(100000, 999999));
 
@@ -46,6 +46,17 @@ namespace ClientModule
             DirectoryInfo directoryInfo = Directory.CreateDirectory(Convert.ToString(path));
             // Ввод параметров клиента с консоли
             cd.CreateClient(client, LoginId);
+            // Сохранение клиента в dat файл
+            SaveClient(path, client);
+        }
+        public void SaveClient(string path, Client client)
+        {
+            path += "data.dat";
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                bf.Serialize(fs, client);
+            }
+            Console.WriteLine("\n\n               Все окей!      │");
         }
     }
 }

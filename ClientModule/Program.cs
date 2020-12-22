@@ -1,5 +1,6 @@
 ﻿using System;
 using LibraryDialog;
+using Library1;
 
 namespace ClientModule
 {
@@ -13,6 +14,7 @@ namespace ClientModule
             ClientMenu clientMenu = new ClientMenu();
             ClientDialog clientDialog = new ClientDialog();
             ClientDataManager dataManager = new ClientDataManager();
+            Client client = new Client();
             // 
             do
             {
@@ -23,7 +25,7 @@ namespace ClientModule
                 {
                     case 1:
                         Console.Clear();
-                        dataManager.Registration();
+                        dataManager.Registration(client);
                         break;
                     case 2:
                         Console.WriteLine("2");

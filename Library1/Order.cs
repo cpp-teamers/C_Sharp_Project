@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
+    [Serializable]
     public enum OrderType { Diagnostics = 900, SoftwareRepair = 300, HardwareRepair = 600}
     [Serializable]
     public class Order
