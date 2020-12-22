@@ -38,13 +38,26 @@ namespace ManagerModule
         public List<Order> GetNotDistributedOrders(string login) // достроить логику
         {
             DirectoryInfo di = new DirectoryInfo(path_clients);
-            FileInfo[] files = di.GetFiles("[^0-9]*.dat");
+            DirectoryInfo[] directories = di.GetDirectories();
+            FileInfo[] files = null;
 
             List<Order> orders = new List<Order>();
+            string path;
+            Order order = null;
 
-            foreach(FileInfo file in files)
+            foreach(var directory in directories)
             {
-                string path = path_clients + @"\n" + file.FullName;
+                files = di.GetFiles("^[0-9]$.dat");
+                foreach (var file in files)
+                {
+                    path = file.FullName;
+                    using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    {
+                        order = (Order)bf.Deserialize(fs);
+                        if (order.Actual)
+                            orders.Add(order);
+                    }
+                }
             }
             return orders;
         }
