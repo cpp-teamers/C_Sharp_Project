@@ -82,5 +82,11 @@ namespace LibraryDialog
             Console.WriteLine("               Press any key to continue.");
             Console.ReadKey();
         }
+        public string InputId()
+        {
+            Console.Write("               Input your id -> ");
+            string id = Console.ReadLine();
+            return id;
+        }
     }
 }

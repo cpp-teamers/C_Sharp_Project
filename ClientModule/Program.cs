@@ -28,7 +28,7 @@ namespace ClientModule
                         dataManager.Registration(client);
                         break;
                     case 2:
-                        Console.WriteLine("2");
+                        dataManager.FindDirectory();
                         break;
                     case 3:
                         Console.WriteLine("3");
