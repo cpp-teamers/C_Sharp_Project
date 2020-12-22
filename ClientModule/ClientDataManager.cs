@@ -12,6 +12,7 @@ namespace ClientModule
     {
         private BinaryFormatter bf = new BinaryFormatter();
         private Client client = new Client();
+        private ClientDialog clientDialog = new ClientDialog();
         public void Registration(Client client)
         {
             Random random = new Random();
@@ -49,14 +50,35 @@ namespace ClientModule
             // Сохранение клиента в dat файл
             SaveClient(path, client);
         }
+
+
         public void SaveClient(string path, Client client)
         {
-            path += "data.dat";
+            path += @"\data.dat";
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 bf.Serialize(fs, client);
             }
-            Console.WriteLine("\n\n               Все окей!      │");
+        }
+        public bool FindDirectory()
+        {
+            bool access = false;
+            string id = clientDialog.InputId();
+            string path = @"..\..\..\..\Data\clients\";
+            DirectoryInfo d = new DirectoryInfo(path);
+            DirectoryInfo[] clients = d.GetDirectories(); // Считал название всех файликов
+            for (int i = 0; i < clients.Length; i++)
+            {
+                if(clients[i].Name == id)
+                {
+                    Console.WriteLine("\n> Папка найдена (0_0)");
+                    access = true;
+                    break;
+                }
+            }
+            if (!access)
+                Console.WriteLine($"\n> Пользователь {id} не найден!");
+            return access;
         }
     }
 }

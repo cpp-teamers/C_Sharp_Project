@@ -14,6 +14,7 @@ namespace Library1
         public OrderType OrderType { get; set; }
         public string Description { get; set; }
         public DateTime DeadLine { get; set; } = DateTime.Now;
+        public bool Actual { get; set; } = true;
         public override string ToString()
         {
             return $"\n Order type: {OrderType}." +
