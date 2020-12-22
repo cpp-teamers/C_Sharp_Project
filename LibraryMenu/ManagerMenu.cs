@@ -10,6 +10,7 @@ namespace LibraryMenu
     public class ManagerMenu
     {
         public static bool exit;
+        public static int counterOfIncorrect;
         public void StartMenu()
         {
             Console.Clear();
@@ -30,7 +31,7 @@ namespace LibraryMenu
             Console.WriteLine("│                                            │");
             Console.WriteLine("│          1. Display not distributed orders │");
             Console.WriteLine("│          2. Distribute orders              │");
-            Console.WriteLine("│          3. Log out                        │");
+            Console.WriteLine("│          3. Exit                           │");
             Console.WriteLine("│                                            │");
             Console.WriteLine("╘════════════════════════════════════════════╛");
         }
