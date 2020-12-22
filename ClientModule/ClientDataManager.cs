@@ -13,6 +13,8 @@ namespace ClientModule
         private BinaryFormatter bf = new BinaryFormatter();
         private Client client = new Client();
         private ClientDialog clientDialog = new ClientDialog();
+        //string path = @$"..\..\..\..\Data\clients";
+
         public void Registration(Client client)
         {
             Random random = new Random();
@@ -48,23 +50,35 @@ namespace ClientModule
             // Ввод параметров клиента с консоли
             cd.CreateClient(client, LoginId);
             // Сохранение клиента в dat файл
-            SaveClient(path, client);
+            SaveClient(client);
         }
-
-
-        public void SaveClient(string path, Client client)
+        public void SaveClient(Client client)
         {
-            path += @"\data.dat";
+            string path = @$"..\..\..\..\Data\clients\{client.AccountData.Login}\data.dat";
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 bf.Serialize(fs, client);
             }
         }
-        public bool FindDirectory()
+        public Client LoadClient(string id)
         {
+            Client client = new Client();
+            //Console.Write("               Input your id -> ");
+            //string id = Console.ReadLine();
+            //if(FindDirectory(id) == false)
+            //   Console.WriteLine($"               Client with id: {id} doesn't exist");
+            string path = @$"..\..\..\..\Data\clients\{id}\data.dat";
+
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                client = (Client)bf.Deserialize(fs);
+            }
+            return client;
+        }
+        public bool FindDirectory(string id)
+        {
+            string path = @$"..\..\..\..\Data\clients\";
             bool access = false;
-            string id = clientDialog.InputId();
-            string path = @"..\..\..\..\Data\clients\";
             DirectoryInfo d = new DirectoryInfo(path);
             DirectoryInfo[] clients = d.GetDirectories(); // Считал название всех файликов
             for (int i = 0; i < clients.Length; i++)
@@ -77,8 +91,12 @@ namespace ClientModule
                 }
             }
             if (!access)
-                Console.WriteLine($"\n> Пользователь {id} не найден!");
+                Console.WriteLine($"               Пользователь {id} не найден!");
             return access;
+        }
+        public string Password(Client client)
+        {
+            return client.AccountData.Password;
         }
     }
 }
