@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Library1;
+using System.Runtime.Serialization.Formatters.Binary;
+using LibraryDialog;
 
 namespace ClientModule
 {
-    class ClientDataManager
+    public class ClientDataManager
     {
+        private BinaryFormatter bf = new BinaryFormatter();
         public void Registration()
         {
             Random random = new Random();
+            ClientDialog cd = new ClientDialog();
+            Client client = new Client();
 
             string LoginId = Convert.ToString(random.Next(100000, 999999));
 
             string path = @$"..\..\..\..\Data\clients\{LoginId}";
-            Console.WriteLine($"!!!PATH: {path}");
 
             int counterRescuer = 0; // Для предотвращения замыкания цикла while
             while (Directory.Exists(path))
@@ -31,15 +35,17 @@ namespace ClientModule
                     break;
                 }
             }
+            // Очень важное смс - нужно запомнить свой id для того, чтобы потом залогиниться
+            Console.Write($"\n\n Here is your id -> ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{LoginId}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(" <- Please, remember that. Press any key to continue.");
+            Console.ReadKey();
+            // создание папки с названием = id клиента
             DirectoryInfo directoryInfo = Directory.CreateDirectory(Convert.ToString(path));
-            Console.WriteLine("\n> Directory was successfully added!");
-            
-            Console.WriteLine("\n Input Password -> ");
-            /*string password = Console.ReadLine();
-            Client client = new Client()
-            {
-                new AccountData() { Login = LoginId, Password = password },
-            }*/
+            // Ввод параметров клиента с консоли
+            cd.CreateClient(client, LoginId);
         }
     }
 }

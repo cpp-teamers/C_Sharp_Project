@@ -46,5 +46,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepairManDialog.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library1\Library1.csproj">
+      <Project>{3b9e4408-93f1-41a3-a2dd-0b3d0cdd3bb4}</Project>
+      <Name>Library1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

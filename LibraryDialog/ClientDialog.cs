@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library1;
 
 namespace LibraryDialog
 {
@@ -38,10 +39,46 @@ namespace LibraryDialog
             }
             return choice;
         }
-        public bool Success()
+        public void CreateClient(Client client, string LoginId)
         {
-            bool success = true;
-            return success;
+
+            Console.WriteLine("");
+            Console.WriteLine(" ╒════════════════════════════════════════════╕");
+            Console.WriteLine(" │     Okay, now input your DATA, please      │");
+            Console.WriteLine(" ╘════════════════════════════════════════════╛");
+            // Ввод ФИО
+            Console.Write("\n |Name -> ");
+            string name = Console.ReadLine();
+            Console.Write("\n |Surname -> ");
+            string surname = Console.ReadLine();
+            Console.Write("\n | Patronymic -> ");
+            string patronymic = Console.ReadLine();
+            Console.Write("\n | Age -> ");
+            int age = Convert.ToInt32(Console.ReadLine());
+            // Ввод адресса
+            Console.Write(" ────────────────────────────────────────────");
+            Console.Write("\n | City -> ");
+            string city = Console.ReadLine();
+            Console.Write("\n | Street -> ");
+            string street = Console.ReadLine();
+            Console.Write("\n | Number of block -> ");
+            string numOfBlock = Console.ReadLine();
+            Console.Write("\n | Number of apartment -> ");
+            int numOfApartment = Convert.ToInt32(Console.ReadLine());
+            // Ввод пароля
+            Console.Write("\n | Password -> ");
+            string password = Console.ReadLine();
+            // Присваивание параметров классу клиента
+            client.AccountData = new AccountData() { Login = LoginId, Password = password };
+            client.Name = name;
+            client.Surname = surname;
+            client.Patronymic = patronymic;
+
+            client.Adress = new Adress() { City = city, Street = street, NumOfBlock = numOfBlock, NumOfApartment = numOfApartment };
+            client.Age = age;
+            Console.WriteLine($" Welcome, {name,4} {surname,4}");
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
         }
     }
 }

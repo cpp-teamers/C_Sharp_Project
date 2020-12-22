@@ -5,6 +5,7 @@ namespace ClientModule
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             // Создание классов
@@ -23,6 +24,7 @@ namespace ClientModule
                         Console.WriteLine("1");
                         break;
                     case 2:
+                        Console.Clear();
                         dataManager.Registration();
                         break;
                     case 3:
