@@ -51,6 +51,10 @@
       <Project>{3b9e4408-93f1-41a3-a2dd-0b3d0cdd3bb4}</Project>
       <Name>Library1</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryMenu\LibraryMenu.csproj">
+      <Project>{84ef2dbd-55ea-424b-a06e-36656c66672c}</Project>
+      <Name>LibraryMenu</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

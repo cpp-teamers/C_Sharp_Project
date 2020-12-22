@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 using System.IO;
 using Library1;
+using LibraryMenu;
 
 
 namespace RepairManModule
@@ -14,21 +15,58 @@ namespace RepairManModule
 
 
         public RepairManDataManager()
-		{
-            path = @"../../../../repairmen";
+        {
+            path = @$"..\..\..\..\Data\repairmen";
             serializer = new XmlSerializer(typeof(RepairMan));
+            InitData();
+            SaveData();
+        }
 
-		}
+        public void SaveData()
+        {
+            path += @"\vasyan.xml";
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                serializer.Serialize(fs, rm);
+                Console.WriteLine("\n>Success: Data is saved!");
+            }
+        }
+
+        private void InitData()
+		{
+            
+            rm = new RepairMan()
+            {
+                Surname = "vasya",
+                Name = "ivan",
+                Patronymic = "Ivanovych",
+                Age = 37,
+                Experience = 12,
+                AccountData = new AccountData() { Login = "228Ivan", Password = "50215464" },
+                Adress = new Adress()
+                {
+                    City = "Kyiv",
+                    NumOfApartment = 1,
+                    NumOfBlock = "10B",
+                    Street = "Shewchenka"
+                },
+                Salary = 1000,
+                Rate = 100,
+                IsFree = false
+            };
+
+
+        }
 
         private void LoadDataOfRepM(string name)
-		{
-            path += ('/' + name + ".xml");
+        {
+            
 
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 rm = (RepairMan)serializer.Deserialize(fs);
             }
-		}
+        }
         public void LogIn()
         {
             int chancesToEnterPassword = 3;
@@ -38,9 +76,11 @@ namespace RepairManModule
 
             bool succeed_entry = false;
 
+            SaveData();
 
             if (ValidName(name))
             {
+
                 do
                 {
                     if (EnterPassword(name))
@@ -52,15 +92,16 @@ namespace RepairManModule
                     {
                         Console.Write($"Sorry! Password is incorrect! You got {chancesToEnterPassword} chances");
                     }
-
                 }
                 while (chancesToEnterPassword != 0);
 
 
-				if (true)
-				{
-                    Console.Write("dfdsf");
-				}
+                if (succeed_entry)
+                {
+                    RepairManMenu rmm = new RepairManMenu();
+                    rmm.WhenLoggedMenu(ref rm);
+                    
+                }
             }
             else
             {
@@ -93,7 +134,7 @@ namespace RepairManModule
 
             Console.Write("\n>Password:");
             string enteredPassword = Console.ReadLine();
-            
+
             LoadDataOfRepM(nameInDir);
 
             if (enteredPassword == rm.AccountData.Password)
@@ -103,5 +144,7 @@ namespace RepairManModule
 
             return success;
         }
+
     }
 }
+
