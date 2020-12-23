@@ -6,5 +6,6 @@ namespace DirectorModule
 {
     class DirectorDataManager
     {
+        readonly private string path = @"..\..\..\directorData.dat";
     }
 }
