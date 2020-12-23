@@ -34,12 +34,26 @@ namespace RepairManModule
 								switch (rmd.WhenLoggedMenuChoice())
 								{
                                     case 1:
-                                        rmdm.DisplayCurrentTask();
+                                        rmdm.DisplayCurrentTasks();
                                         break;
                                     case 2:
 										{
                                             rmm.TaskReadynessOptionsMenu();
-                                            rmdm.MarkTaskReadyness();
+											switch (rmd.TaskReadynessOptionsMenuChoice())
+											{
+                                                case 1:
+                                                    {
+                                                        rmdm.MarkTaskReady();
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    {
+                                                        rmdm.MarkInProgress();
+                                                    }
+                                                    break;
+                                                default:
+													break;
+											}
 										}
                                         break;
                                     case 3:
