@@ -106,5 +106,59 @@ namespace LibraryDialog
             // Console.ReadKey();
 
         }
+        public void CreateRepairMan(RepairMan repairMan)
+        {
+            Console.WriteLine("");
+            Console.WriteLine("               ╒════════════════════════════════════════════╕");
+            Console.WriteLine("               │   Okay, now input repair man DATA, please  │");
+            Console.WriteLine("               ╘════════════════════════════════════════════╛");
+            // Ввод ФИО
+            Console.Write("\n               | Name -> ");
+            string name = Console.ReadLine();
+            Console.Write("               | Surname -> ");
+            string surname = Console.ReadLine();
+            Console.Write("               | Patronymic -> ");
+            string patronymic = Console.ReadLine();
+            Console.Write("               | Age -> ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            // Ввод адресса
+            Console.Write("               ────────────────────────────────────────────");
+            Console.Write("\n               | City -> ");
+            string city = Console.ReadLine();
+            Console.Write("               | Street -> ");
+            string street = Console.ReadLine();
+            Console.Write("               | Number of block -> ");
+            string numOfBlock = Console.ReadLine();
+            Console.Write("               | Number of apartment -> ");
+            int numOfApartment = Convert.ToInt32(Console.ReadLine());
+            //
+            Console.WriteLine("               ────────────────────────────────────────────");
+            Console.Write("               | Input experience -> ");
+            int exprience = Convert.ToInt32(Console.ReadLine());
+            Console.Write("               | Input salary ($) -> ");
+            decimal salary = Convert.ToDecimal(Console.ReadLine());
+            // Ввод пароля
+            Console.Write("               ────────────────────────────────────────────");
+            Console.Write("\n               | Login -> ");
+            string LoginId = Console.ReadLine();
+            Console.Write("\n               | Password -> ");
+            string password = Console.ReadLine();
+            // Присваивание параметров классу менеджера
+            repairMan.AccountData = new AccountData() { Login = LoginId, Password = password };
+            repairMan.Name = name;
+            repairMan.Surname = surname;
+            repairMan.Patronymic = patronymic;
+            repairMan.Adress = new Adress() { City = city, Street = street, NumOfBlock = numOfBlock, NumOfApartment = numOfApartment };
+            repairMan.Age = age;
+            repairMan.Rate = 8.0;
+            repairMan.Salary = salary;
+
+            Console.WriteLine($"\n               Manager {name,4} {surname,7} was successfully created!");
+            // Console.WriteLine("               Press any key to continue.");
+            // Console.ReadKey();
+
+        }
+
     }
 }
