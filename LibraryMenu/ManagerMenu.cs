@@ -36,7 +36,6 @@ namespace LibraryMenu
             Console.WriteLine("╘════════════════════════════════════════════╛");
         }
 
-
         
     }
 }
