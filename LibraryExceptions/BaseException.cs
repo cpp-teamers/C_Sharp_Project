@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace LibraryExceptions
 {
-    public class BaseException
+    public class BaseException : ApplicationException
     {
-
+        public string Parametr { get; set; }
+        public BaseException(string message, string parametr) : base(message)
+        {
+            Parametr = parametr;
+        }
     }
 }
