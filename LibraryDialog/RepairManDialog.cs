@@ -93,7 +93,7 @@ namespace LibraryDialog
             {
                 Console.Write("\n               Please, input choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
-                if (choice > 3 || choice < 1)
+                if (choice > 2 || choice < 1)
                     throw new Exception("\n               You have entered an invalid value!");
             }
             catch (Exception err)
