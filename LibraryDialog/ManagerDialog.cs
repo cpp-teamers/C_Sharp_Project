@@ -37,5 +37,11 @@ namespace LibraryDialog
             Console.Write("\n> Choose Order, Which you want to distribute => ");
             return Convert.ToInt32(Console.ReadLine());
         }
+
+        public int ChoosenRepairs()
+        {
+            Console.Write("\n> Choose RepairMen, to whom you want distribute order => ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
     }
 }
