@@ -51,13 +51,13 @@ namespace RepairManModule
                                                     {
                                                         case 1:
                                                             {
-                                                                rmdm.MarkTaskReady();
+                                                                rmdm.MarkInProgress();
                                                                 back = true;
                                                             }
                                                             break;
                                                         case 2:
                                                             {
-                                                                rmdm.MarkInProgress();
+                                                                rmdm.MarkTaskReady();
                                                                 back = true;
                                                             }
                                                             break;
@@ -67,7 +67,10 @@ namespace RepairManModule
                                                 }
                                                 break;
                                             case 3:
-                                                exit = true;
+                                                {
+                                                    back = true;
+                                                    exit = true;
+                                                }
                                                 break;
                                             default:
                                                 {

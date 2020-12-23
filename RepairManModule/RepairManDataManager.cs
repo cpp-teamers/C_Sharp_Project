@@ -13,7 +13,7 @@ namespace RepairManModule
     {
         string path;
         public RepairMan rm;
-        SortedList<string, Order> curr_order = new SortedList<string, Order>();
+        List<Order> curr_order;
         XmlSerializer serializer;
         BinaryFormatter bf;
 
@@ -69,25 +69,35 @@ namespace RepairManModule
 
         private void LoadTasks()
         {
-            List<Order> orders = new List<Order>();
+            //List<Order> orders = new List<Order>();
+            curr_order = new List<Order>();
 
-			foreach (var path in rm.PathsOfOrders)
+
+
+            foreach (var path in rm.PathsOfOrders)
 			{
+                
                 using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    curr_order.Add(path, (Order)bf.Deserialize(fs));
+                    curr_order.Add((Order)bf.Deserialize(fs));
                 }
 			}
 
         }
-        public void SaveTasks(string path)
+        public void SaveTasks()
         {
             //path += @"\vasyan.xml";
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
+            int j = 0;
+
+            foreach (string p in rm.PathsOfOrders)
             {
-                bf.Serialize(fs, curr_order);
-                Console.WriteLine("\n>Success: Data is saved!");
-            }
+
+                using (FileStream fs = new FileStream(p, FileMode.Open, FileAccess.Write))
+                {
+                    bf.Serialize(fs, curr_order[j]);
+                }
+                j++;
+            }   
         }
 
 
@@ -187,7 +197,7 @@ namespace RepairManModule
 
             foreach (var item in curr_order)
 			{
-                Console.WriteLine(item.Value);
+                Console.WriteLine(item);
 			}
 		}
 
@@ -201,9 +211,9 @@ namespace RepairManModule
                 Int32.TryParse(Console.ReadLine(), out int choice);
                 //LoadTasks();
 
-                curr_order.Values[choice - 1].Actual = false;
+                curr_order[choice-1].Actual= false;
 
-                SaveTasks(curr_order.Keys[choice - 1]);
+                SaveTasks();
             }
             catch (Exception)
             {
@@ -217,13 +227,13 @@ namespace RepairManModule
             {
 
 
-                Console.Write("\n> What task you would like to mark as in progress: ");
+                Console.Write("\n> What task you would like to mark as ready: ");
                 Int32.TryParse(Console.ReadLine(), out int choice);
                 //LoadTasks();
 
-                curr_order.Values[choice - 1].Actual = true;
+                curr_order[choice - 1].Actual = true;
 
-                SaveTasks(curr_order.Keys[choice - 1]);
+                SaveTasks();
             }
             catch (Exception)
             {
