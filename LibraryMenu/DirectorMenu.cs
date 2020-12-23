@@ -27,9 +27,7 @@ namespace LibraryMenu
             Console.WriteLine("               │────────────────────────────────────────────│");
             Console.WriteLine("               │              1. Add manager                │");
             Console.WriteLine("               │              2. Add repairMan              │");
-            Console.WriteLine("               │              3. Remove manager             │");
-            Console.WriteLine("               │              4. Remove repairMan           │");
-            Console.WriteLine("               │              5. Exit                       │");
+            Console.WriteLine("               │              3. Exit                       │");
             Console.WriteLine("               ╘════════════════════════════════════════════╛");
         }
 

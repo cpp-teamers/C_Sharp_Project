@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeLimitException.cs" />
+    <Compile Include="ApartmentException.cs" />
     <Compile Include="BaseException.cs" />
     <Compile Include="CharException.cs" />
     <Compile Include="IntException.cs" />

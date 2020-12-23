@@ -32,7 +32,7 @@ namespace LibraryDialog
             {
                 Console.Write("\n               Please, input choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
-                if (choice > 5 || choice < 1)
+                if (choice > 3 || choice < 1)
                     throw new Exception("\n               You have entered an invalid value!");
             }
             catch (Exception err)
@@ -156,9 +156,6 @@ namespace LibraryDialog
             repairMan.PathsOfOrders = new List<string>();
 
             Console.WriteLine($"\n               Manager {name,4} {surname,7} was successfully created!");
-            // Console.WriteLine("               Press any key to continue.");
-            // Console.ReadKey();
-
         }
 
     }

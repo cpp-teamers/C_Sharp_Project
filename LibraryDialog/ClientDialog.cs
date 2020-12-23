@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Library1;
 using LibraryMenu;
+using LibraryExceptions;
 
 namespace LibraryDialog
 {
@@ -27,46 +28,63 @@ namespace LibraryDialog
         }
         public void CreateClient(Client client, string LoginId)
         {
-            Console.WriteLine("");
-            Console.WriteLine("               ╒════════════════════════════════════════════╕");
-            Console.WriteLine("               │     Okay, now input your DATA, please      │");
-            Console.WriteLine("               ╘════════════════════════════════════════════╛");
-            // Ввод ФИО
-            Console.Write("\n               | Name -> ");
-            string name = Console.ReadLine();
-            Console.Write("               | Surname -> ");
-            string surname = Console.ReadLine();
-            Console.Write("               | Patronymic -> ");
-            string patronymic = Console.ReadLine();
-            Console.Write("               | Age -> ");
-            int age = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("");
+                Console.WriteLine("               ╒════════════════════════════════════════════╕");
+                Console.WriteLine("               │     Okay, now input your DATA, please      │");
+                Console.WriteLine("               ╘════════════════════════════════════════════╛");
+                // Ввод ФИО
+                Console.Write("\n               | Name -> ");
+                string name = Console.ReadLine();
+                Console.Write("               | Surname -> ");
+                string surname = Console.ReadLine();
+                Console.Write("               | Patronymic -> ");
+                string patronymic = Console.ReadLine();
+                Console.Write("               | Age -> ");
 
-            // Ввод адресса
-            Console.Write("               ────────────────────────────────────────────");
-            Console.Write("\n               | City -> ");
-            string city = Console.ReadLine();
-            Console.Write("               | Street -> ");
-            string street = Console.ReadLine();
-            Console.Write("               | Number of block -> ");
-            string numOfBlock = Console.ReadLine();
-            Console.Write("               | Number of apartment -> ");
-            int numOfApartment = Convert.ToInt32(Console.ReadLine());
-            // Ввод пароля
-            Console.Write("               ────────────────────────────────────────────");
-            Console.Write("\n               | Password -> ");
-            string password = Console.ReadLine();
-            // Присваивание параметров классу клиента
-            client.AccountData = new AccountData() { Login = LoginId, Password = password };
-            client.Name = name;
-            client.Surname = surname;
-            client.Patronymic = patronymic;
+                if (!Int32.TryParse(Console.ReadLine(), out int age) || age < 3 || age > 150)
+                {
+                    throw new AgeLimitException("               Invalid age!", Convert.ToString(age));
+                }
+                // Ввод адресса
+                Console.Write("               ────────────────────────────────────────────");
+                Console.Write("\n               | City -> ");
+                string city = Console.ReadLine();
+                Console.Write("               | Street -> ");
+                string street = Console.ReadLine();
+                Console.Write("               | Number of block -> ");
+                string numOfBlock = Console.ReadLine();
+                Console.Write("               | Number of apartment -> ");
+                if (!Int32.TryParse(Console.ReadLine(), out int numOfApartment) || numOfApartment < 0 || numOfApartment > 1000 )
+                {
+                    throw new ApartmentException("               Invalid number of apartment!", Convert.ToString(numOfApartment));
+                }
+                // Ввод пароля
+                Console.Write("               ────────────────────────────────────────────");
+                Console.Write("\n               | Password -> ");
+                string password = Console.ReadLine();
+                // Присваивание параметров классу клиента
+                client.AccountData = new AccountData() { Login = LoginId, Password = password };
+                client.Name = name;
+                client.Surname = surname;
+                client.Patronymic = patronymic;
 
-            client.Adress = new Adress() { City = city, Street = street, NumOfBlock = numOfBlock, NumOfApartment = numOfApartment };
-            client.Age = age;
-            Console.WriteLine("               User was successfully created!");
-            Console.WriteLine($"\n\n               Welcome, {name,4} {surname,4}");
-           // Console.WriteLine("               Press any key to continue.");
-           // Console.ReadKey();
+                client.Adress = new Adress() { City = city, Street = street, NumOfBlock = numOfBlock, NumOfApartment = numOfApartment };
+                client.Age = age;
+                Console.WriteLine("               User was successfully created!");
+                Console.WriteLine($"\n\n               Welcome, {name,4} {surname,4}");
+                // Console.WriteLine("               Press any key to continue.");
+                // Console.ReadKey();
+            }
+            catch (AgeLimitException ale)
+            {
+                Console.WriteLine($"               Error: {ale.Message}, -> {ale.Parametr}");
+            }
+            catch (ApartmentException ae)
+            {
+                Console.WriteLine($"               Error: {ae.Message}, -> {ae.Parametr}");
+            }
         }
         public int Choice()
         {
