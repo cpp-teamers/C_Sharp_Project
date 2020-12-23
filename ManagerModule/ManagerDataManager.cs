@@ -51,7 +51,7 @@ namespace ManagerModule
                 files = di.GetFiles("^[0-9]$.dat");
                 foreach (var file in files)
                 {
-                    path = file.FullName;
+                    path = path_clients + directory.Name+ @"\" + file.Name;
                     using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     {
                         order = (Order)bf.Deserialize(fs);
@@ -84,7 +84,7 @@ namespace ManagerModule
             foreach(var directory in directories)
             {
                 files = di.GetFiles("*.dat");
-                path = files[0].FullName;
+                path = path_repairs + directory.Name + @"\" + files[0].Name;
                 using(FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
                     repair = (RepairMan)bf.Deserialize(fs);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LibraryExceptions;
 
 namespace LibraryDialog
 {
@@ -10,14 +11,42 @@ namespace LibraryDialog
     {
         public bool AllowContinue()
         {
-            Console.Write("\n Continue?(y/n) => ");
-            return Convert.ToChar(Console.ReadLine()) == 'y';
+            try
+            {
+                Console.Write("\n Continue?(y/n) => ");
+                string choose = Console.ReadLine();
+                if (!Char.TryParse(choose, out char ans))
+                {
+                    throw new CharException("Incorrect symbol", choose);
+                }
+                return (ans == 'y');
+            }
+            catch(BaseException err)
+            {
+                Console.WriteLine($"\n CharException: {err.Message}");
+                Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                return false;
+            }
         }
 
         public int ChoosenParametr()
         {
-            Console.Write("\n> Choose Params => ");
-            return Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                Console.Write("\n> Choose Params => ");
+                string choose = Console.ReadLine();
+                if (!Int32.TryParse(choose, out int ans))
+                {
+                    throw new IntException("Incorrect symbol", choose);
+                }
+                return ans;
+            }
+            catch(BaseException err)
+            {
+                Console.WriteLine($"\n IntException: {err.Message}");
+                Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                return 0;
+            }
         }
 
         public string LogInDialog()
@@ -34,14 +63,42 @@ namespace LibraryDialog
 
         public int ChoosenOrders()
         {
-            Console.Write("\n> Choose Order, Which you want to distribute => ");
-            return Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                Console.Write("\n> Choose Order, Which you want to distribute => ");
+                string choose = Console.ReadLine();
+                if(!Int32.TryParse(choose, out int ans))
+                {
+                    throw new IntException("Incorrect symbol", choose);
+                }
+                return ans;
+            }
+            catch(BaseException err)
+            {
+                Console.WriteLine($"\n IntException: {err.Message}");
+                Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                return 0;
+            }
         }
 
         public int ChoosenRepairs()
         {
-            Console.Write("\n> Choose RepairMen, to whom you want distribute order => ");
-            return Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                Console.Write("\n> Choose RepairMen, to whom you want distribute order => ");
+                string choose = Console.ReadLine();
+                if(!Int32.TryParse(choose, out int ans))
+                {
+                    throw new IntException("Incorrect symbol", choose);
+                }
+                return ans;
+            }
+            catch(BaseException err)
+            {
+                Console.WriteLine($"\n IntException: {err.Message}");
+                Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                return 0;
+            }
         }
     }
 }
