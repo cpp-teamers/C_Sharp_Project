@@ -17,6 +17,9 @@ namespace LibraryMenu
         }
         public void WhenLoggedMenu(ref RepairMan repairMan)
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine($"           Welcome, {repairMan.Name}!        ");
             Console.WriteLine("╒════════════════════════════════════════════╕");
             Console.WriteLine("│────────────────────────────────────────────│");

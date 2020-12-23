@@ -24,6 +24,36 @@ namespace LibraryDialog
                 }
                 return answer;
         }
+
+        public bool TryAgain()
+		{
+            string answ = "";
+            try
+            {
+                Console.Write(" Try again?(y/n)- ");
+                answ = Console.ReadLine();
+
+                if (answ != "y" && answ != "n")
+                {
+                    throw new Exception("There is no such variant!");
+                }
+
+				if (answ == "y")
+				{
+                    return true;
+				}
+				else
+				{
+                    return false;
+				}
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Error: {err.Message}");
+            }
+            return false;
+        }
         public int StartMenuChoice()
         {
             int choice = -1;

@@ -13,7 +13,7 @@ namespace RepairManModule
             RepairManDataManager rmdm = new RepairManDataManager();
             RepairManDialog rmd = new RepairManDialog();
             RepairManMenu rmm = new RepairManMenu();
-
+            
             bool exit = false;
             do
             {
@@ -23,7 +23,39 @@ namespace RepairManModule
                 switch (rmd.StartMenuChoice())
                 {
                     case 1:
-                        rmdm.LogIn();
+						if (rmdm.LogIn())
+						{
+                            bool try_again = false;
+                            do
+                            {
+
+                                rmm.WhenLoggedMenu(ref rmdm.rm);
+
+								switch (rmd.WhenLoggedMenuChoice())
+								{
+                                    case 1:
+                                        rmdm.DisplayCurrentTask();
+                                        break;
+                                    case 2:
+										{
+                                            rmm.TaskReadynessOptionsMenu();
+                                            rmdm.MarkTaskReadyness();
+										}
+                                        break;
+                                    case 3:
+                                        exit = true;
+                                        break;
+									default:
+                                        {
+                                            try_again = rmd.TryAgain();
+                                            break;
+                                        }
+								}
+
+								
+                            } while (!exit && try_again);
+
+                        }
                         break;
                     case 2:
                         exit = true;
