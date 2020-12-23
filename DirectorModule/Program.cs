@@ -43,17 +43,13 @@ namespace DirectorModule
                                         //.CreateOrder(order);
                                         // dataManager.SaveOrder(id, order);
                                         dataManager.AddManager();
-                                        Console.WriteLine("1");
                                         break;
                                     case 2:
-                                        //dataManager.ShowAllOrders(id);
-                                        Console.WriteLine("2");
-
+                                        dataManager.AddRepairMan();
                                         break;
                                     case 3:
                                         //clientMenu.LogOutMenu(client);
                                         Console.WriteLine("3");
-
                                         break;
                                     case 4:
                                         Console.WriteLine("");
