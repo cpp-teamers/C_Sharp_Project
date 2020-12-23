@@ -27,7 +27,6 @@ namespace LibraryDialog
         }
         public void CreateClient(Client client, string LoginId)
         {
-
             Console.WriteLine("");
             Console.WriteLine("               ╒════════════════════════════════════════════╕");
             Console.WriteLine("               │     Okay, now input your DATA, please      │");

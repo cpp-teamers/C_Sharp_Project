@@ -100,18 +100,23 @@ namespace ClientModule
             Order order = new Order();
             DirectoryInfo di = new DirectoryInfo(path);
             FileInfo[] files = di.GetFiles("*.dat");
-            
-            for (int i = 0; i < files.Length; i++)
+
+            if (files.Length == 1)
+                Console.WriteLine("\n               You haven't got any orders yet!");
+            else
             {
-                if (files[i].Name != "data.dat")
+                for (int i = 0; i < files.Length; i++)
                 {
-                    path = @$"..\..\..\..\Data\clients\{id}\{files[i].Name}";
-                    order = LoadOrder(path);
-                    Console.Write($"{i + 1} -> {order.Description}, {order.DeadLine.Date.Year}.{order.DeadLine.Date.Month}.{order.DeadLine.Date.Day}");
-                    if (!order.Actual)
-                        Console.WriteLine($"  Oder is done");
-                    else
-                        Console.WriteLine($"  Oder isn't done");
+                    if (files[i].Name != "data.dat")
+                    {
+                        path = @$"..\..\..\..\Data\clients\{id}\{files[i].Name}";
+                        order = LoadOrder(path);
+                        Console.Write($"{i + 1} -> {order.Description}, {order.DeadLine.Date.Year}.{order.DeadLine.Date.Month}.{order.DeadLine.Date.Day}");
+                        if (!order.Actual)
+                            Console.WriteLine($"  Oder is done");
+                        else
+                            Console.WriteLine($"  Oder isn't done");
+                    }
                 }
             }
         }
