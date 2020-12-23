@@ -4,6 +4,8 @@ using System.IO;
 using Library1;
 using LibraryMenu;
 using System.Linq;
+using System.Collections.Generic;
+
 
 namespace RepairManModule
 {
@@ -11,7 +13,7 @@ namespace RepairManModule
     {
         string path;
         public RepairMan rm;
-        Order curr_order;
+        SortedList<string, Order> curr_order;
         XmlSerializer serializer;
 
 
@@ -64,13 +66,13 @@ namespace RepairManModule
             }
         }
 
-        private void LoadDataOfCurrentTask(string name)
+        private void LoadTasks(string name)
         {
             path = @$"..\..\..\..\Data\repairmen\{name}\CurrentOrder.xml";
 
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read))
             {
-                curr_order = (Order)serializer.Deserialize(fs);
+                
             }
         }
 
@@ -163,9 +165,9 @@ namespace RepairManModule
             return success;
         }
 
-        public void DisplayCurrentTask()
+        public void DisplayCurrentTasks()
 		{
-
+            
 		}
 
         public void MarkTaskReadyness()
