@@ -3,23 +3,21 @@ using System.Xml.Serialization;
 using System.IO;
 using Library1;
 using LibraryMenu;
-
+using System.Linq;
 
 namespace RepairManModule
 {
     public class RepairManDataManager
     {
         string path;
-        RepairMan rm;
+        public RepairMan rm;
+        Order curr_order;
         XmlSerializer serializer;
 
 
         public RepairManDataManager()
         {
-            path = @$"..\..\..\..\Data\repairmen";
             serializer = new XmlSerializer(typeof(RepairMan));
-            InitData();
-            SaveData();
         }
 
         public void SaveData()
@@ -31,7 +29,6 @@ namespace RepairManModule
                 Console.WriteLine("\n>Success: Data is saved!");
             }
         }
-
         private void InitData()
 		{
             
@@ -57,26 +54,36 @@ namespace RepairManModule
 
 
         }
-
         private void LoadDataOfRepM(string name)
         {
+            path = @$"..\..\..\..\Data\repairmen\{name}\{name}.xml";
             
-
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 rm = (RepairMan)serializer.Deserialize(fs);
             }
         }
-        public void LogIn()
+
+        private void LoadDataOfCurrentTask(string name)
+        {
+            path = @$"..\..\..\..\Data\repairmen\{name}\CurrentOrder.xml";
+
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                curr_order = (Order)serializer.Deserialize(fs);
+            }
+        }
+
+        public bool LogIn()
         {
             int chancesToEnterPassword = 3;
 
             Console.Write("\n>Enter your name: ");
             string name = Console.ReadLine();
+            name = name.ToLower();
 
             bool succeed_entry = false;
 
-            SaveData();
 
             if (ValidName(name))
             {
@@ -90,49 +97,60 @@ namespace RepairManModule
                     }
                     else
                     {
-                        Console.Write($"Sorry! Password is incorrect! You got {chancesToEnterPassword} chances");
+                        chancesToEnterPassword--;
+                        Console.Write($"\nSorry! Password is incorrect! You got {chancesToEnterPassword} chances\n\n");
                     }
                 }
                 while (chancesToEnterPassword != 0);
 
 
-                if (succeed_entry)
-                {
-                    RepairManMenu rmm = new RepairManMenu();
-                    rmm.WhenLoggedMenu(ref rm);
-                    
-                }
             }
             else
             {
                 Console.Write($"Sorry! There is no such person.");
             }
 
-
+            return succeed_entry;
         }
         private bool ValidName(string nameInDir)
         {
-
-
-            string[] files = Directory.GetFiles(path);
+            path = @$"..\..\..\..\Data\repairmen\{nameInDir}";
             bool isFound = false;
 
-            foreach (string f in files)
+            if (Directory.Exists(path))
             {
-                if (f == nameInDir)
+
+                nameInDir = $@"{nameInDir}.xml";
+
+                DirectoryInfo di = new DirectoryInfo(path);
+                FileInfo[] files = di.GetFiles("*.xml");
+
+                string[] files_str = new string[files.Length];
+
+
+
+                for (int i = 0; i < files_str.Length; i++)
                 {
-                    isFound = true;
-                    break;
+                    files_str[i] = files[i].Name;
                 }
-            }
+
+                foreach (string f in files_str)
+                {
+                    if (nameInDir == f)
+                    {
+                        isFound = true;
+                    }
+                }
+			}
 
             return isFound;
         }
         private bool EnterPassword(string nameInDir)
         {
+
             bool success = false;
 
-            Console.Write("\n>Password:");
+            Console.Write("\n>Password: ");
             string enteredPassword = Console.ReadLine();
 
             LoadDataOfRepM(nameInDir);
@@ -143,6 +161,16 @@ namespace RepairManModule
             }
 
             return success;
+        }
+
+        public void DisplayCurrentTask()
+		{
+
+		}
+
+        public void MarkTaskReadyness()
+        {
+
         }
 
     }
