@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RepairMan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>dima</Name>
+  <Surname>pupkin</Surname>
+  <Patronymic>vasilievich</Patronymic>
+  <Age>54</Age>
+  <Adress>
+    <City>Odessa</City>
+    <Street>Central</Street>
+    <NumOfBlock>6</NumOfBlock>
+    <NumOfApartment>263</NumOfApartment>
+  </Adress>
+  <AccountData>
+    <Password>dima</Password>
+    <Login>dima@gmail.com</Login>
+  </AccountData>
+  <Salary>3200</Salary>
+  <Rate>8</Rate>
+  <Experience>0</Experience>
+  <IsFree>false</IsFree>
+  <PathsOfOrders />
+</RepairMan>

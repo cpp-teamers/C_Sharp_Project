@@ -18,5 +18,7 @@
   <Rate>8</Rate>
   <Experience>0</Experience>
   <IsFree>false</IsFree>
-  <PathsOfOrders />
+  <PathsOfOrders>
+    <string>..\..\..\..\Data\clients\270318\1.dat</string>
+  </PathsOfOrders>
 </RepairMan>
