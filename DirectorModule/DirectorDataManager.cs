@@ -96,14 +96,6 @@ namespace DirectorModule
             SaveRepairMan(repairMan, name);
 
         }
-        // Удаление менеджера
-        public void RemoveManager()
-        {
-        }
-        // Удаление RepairMan 
-        public void RemoveRepairMan()
-        {
-        }
 
         public void SaveManager(Manager manager, string LoginId)
         { 

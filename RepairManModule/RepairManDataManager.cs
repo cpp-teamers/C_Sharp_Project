@@ -66,7 +66,6 @@ namespace RepairManModule
                 rm = (RepairMan)serializer.Deserialize(fs);
             }
         }
-
         private void LoadTasks()
         {
             List<Order> orders = new List<Order>();

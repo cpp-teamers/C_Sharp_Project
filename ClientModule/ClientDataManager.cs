@@ -13,7 +13,6 @@ namespace ClientModule
         private BinaryFormatter bf = new BinaryFormatter();
         private Client client = new Client();
         private ClientDialog clientDialog = new ClientDialog();
-        //string path = @$"..\..\..\..\Data\clients";
 
         public void Registration(Client client)
         {
@@ -138,7 +137,6 @@ namespace ClientModule
                 {
                     fileCounter++;
                     FileName = $"{fileCounter}.dat";
-                    Console.WriteLine($"GILECOUNTER: {FileName}");
                 }
             }
             FileName = $"{fileCounter}.dat";

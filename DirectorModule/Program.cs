@@ -48,13 +48,6 @@ namespace DirectorModule
                                         dataManager.AddRepairMan();
                                         break;
                                     case 3:
-                                        //clientMenu.LogOutMenu(client);
-                                        Console.WriteLine("3");
-                                        break;
-                                    case 4:
-                                        Console.WriteLine("");
-                                        break;
-                                    case 5:
                                         exit = true;
                                         break;
                                 }

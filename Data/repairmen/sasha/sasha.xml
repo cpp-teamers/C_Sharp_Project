@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RepairMan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>sasha</Name>
+  <Surname>pupkin</Surname>
+  <Patronymic>mykolayovich</Patronymic>
+  <Age>24</Age>
+  <Adress>
+    <City>Donetsk</City>
+    <Street>Balzaka</Street>
+    <NumOfBlock>4</NumOfBlock>
+    <NumOfApartment>154</NumOfApartment>
+  </Adress>
+  <AccountData>
+    <Password>sasha123</Password>
+    <Login>sasha@gmail.com</Login>
+  </AccountData>
+  <Salary>1700</Salary>
+  <Rate>8</Rate>
+  <Experience>0</Experience>
+  <IsFree>false</IsFree>
+  <PathsOfOrders />
+</RepairMan>
