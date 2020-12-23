@@ -30,45 +30,59 @@ namespace RepairManModule
                             {
 
                                 rmm.WhenLoggedMenu(ref rmdm.rm);
-
-								switch (rmd.WhenLoggedMenuChoice())
-								{
-                                    case 1:
-                                        rmdm.DisplayCurrentTasks();
-                                        break;
-                                    case 2:
-										{
-                                            rmm.TaskReadynessOptionsMenu();
-											switch (rmd.TaskReadynessOptionsMenuChoice())
-											{
-                                                case 1:
-                                                    {
-                                                        rmdm.MarkTaskReady();
-                                                    }
-                                                    break;
-                                                case 2:
-                                                    {
-                                                        rmdm.MarkInProgress();
-                                                    }
-                                                    break;
-                                                default:
-													break;
-											}
-										}
-                                        break;
-                                    case 3:
-                                        exit = true;
-                                        break;
-									default:
+                                do
+                                {
+                                    bool back;
+                                    do
+                                    {
+                                        back = false;
+                                        switch (rmd.WhenLoggedMenuChoice())
                                         {
-                                            try_again = rmd.TryAgain();
-                                            break;
+
+                                            case 1:
+                                                rmdm.DisplayCurrentTasks();
+                                                break;
+                                            case 2:
+                                                {
+
+                                                    rmm.TaskReadynessOptionsMenu();
+
+                                                    switch (rmd.TaskReadynessOptionsMenuChoice())
+                                                    {
+                                                        case 1:
+                                                            {
+                                                                rmdm.MarkTaskReady();
+                                                                back = true;
+                                                            }
+                                                            break;
+                                                        case 2:
+                                                            {
+                                                                rmdm.MarkInProgress();
+                                                                back = true;
+                                                            }
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 3:
+                                                exit = true;
+                                                break;
+                                            default:
+                                                {
+                                                    try_again = rmd.TryAgain();
+                                                    break;
+                                                }
                                         }
-								}
+                                    } while (!back);
+                                    
 
-								
-                            } while (!exit && try_again);
 
+                                } while (!exit && try_again);
+                            }
+                            while(!exit && try_again);
+                        
                         }
                         break;
                     case 2:

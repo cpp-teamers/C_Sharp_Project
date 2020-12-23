@@ -13,7 +13,7 @@ namespace RepairManModule
     {
         string path;
         public RepairMan rm;
-        Dictionary<string, Order> curr_order = new Dictionary<string, Order>();
+        SortedList<string, Order> curr_order = new SortedList<string, Order>();
         XmlSerializer serializer;
         BinaryFormatter bf;
 
@@ -80,6 +80,16 @@ namespace RepairManModule
 			}
 
         }
+        public void SaveTasks(string path)
+        {
+            //path += @"\vasyan.xml";
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                bf.Serialize(fs, curr_order);
+                Console.WriteLine("\n>Success: Data is saved!");
+            }
+        }
+
 
         public bool LogIn()
         {
@@ -172,21 +182,53 @@ namespace RepairManModule
 
         public void DisplayCurrentTasks()
 		{
-            int j = 0;
-			foreach (var item in curr_order)
+
+            LoadTasks();
+
+            foreach (var item in curr_order)
 			{
-                Console.WriteLine($"{j + 1}.\n");
-                Console.WriteLine(curr_order.Values);
+                Console.WriteLine(item.Value);
 			}
 		}
 
         public void MarkTaskReady()
         {
-            
+            try
+            {
+
+
+                Console.Write("\n> What task you would like to mark as ready: ");
+                Int32.TryParse(Console.ReadLine(), out int choice);
+                //LoadTasks();
+
+                curr_order.Values[choice - 1].Actual = false;
+
+                SaveTasks(curr_order.Keys[choice - 1]);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Sorry there is no such position");
+            }
         }
         public void MarkInProgress()
         {
 
+            try
+            {
+
+
+                Console.Write("\n> What task you would like to mark as in progress: ");
+                Int32.TryParse(Console.ReadLine(), out int choice);
+                //LoadTasks();
+
+                curr_order.Values[choice - 1].Actual = true;
+
+                SaveTasks(curr_order.Keys[choice - 1]);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Sorry there is no such position");
+            }
         }
     }
 }
