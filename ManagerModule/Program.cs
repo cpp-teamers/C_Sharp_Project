@@ -15,6 +15,7 @@ namespace ManagerModule
             ManagerDataManager dataManager = new ManagerDataManager();
             ManagerManager mm = new ManagerManager();
             ManagerMenu.exit = true;
+            bool exit2;
 
             do
             {
@@ -47,8 +48,9 @@ namespace ManagerModule
                                             Console.WriteLine("!UNKNOWN PARAMS!"); // Exception
                                             break;
                                     }
-
-                                } while (ManagerMenu.exit && dialog.AllowContinue());
+                                    
+                                } while (ManagerMenu.exit);
+                                
                             }
                             else
                             {
@@ -64,7 +66,7 @@ namespace ManagerModule
                         Console.WriteLine("!UNKNOWN PARAMS!");
                         break;
                 }
-            } while (ManagerMenu.counterOfIncorrect < 3 && ManagerMenu.exit && dialog.AllowContinue());
+            } while (ManagerMenu.counterOfIncorrect < 3 && ManagerMenu.exit);
 
             Console.WriteLine("\n\nFinish");
         }
