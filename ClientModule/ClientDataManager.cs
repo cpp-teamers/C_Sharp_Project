@@ -63,15 +63,14 @@ namespace ClientModule
         public Client LoadClient(string id)
         {
             Client client = new Client();
-            //Console.Write("               Input your id -> ");
-            //string id = Console.ReadLine();
-            //if(FindDirectory(id) == false)
-            //   Console.WriteLine($"               Client with id: {id} doesn't exist");
-            string path = @$"..\..\..\..\Data\clients\{id}\data.dat";
 
-            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                client = (Client)bf.Deserialize(fs);
+            if(FindDirectory(id) == true)
+            { 
+                string path = @$"..\..\..\..\Data\clients\{id}\data.dat";
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    client = (Client)bf.Deserialize(fs);
+                }
             }
             return client;
         }
@@ -85,18 +84,76 @@ namespace ClientModule
             {
                 if(clients[i].Name == id)
                 {
-                    Console.WriteLine("\n> Папка найдена (0_0)");
                     access = true;
                     break;
                 }
             }
-            if (!access)
-                Console.WriteLine($"               Пользователь {id} не найден!");
             return access;
         }
         public string Password(Client client)
         {
             return client.AccountData.Password;
+        }
+        public void ShowAllOrders(string id)
+        {
+            string path = @$"..\..\..\..\Data\clients\{id}\";
+            Order order = new Order();
+            DirectoryInfo di = new DirectoryInfo(path);
+            FileInfo[] files = di.GetFiles("*.dat");
+            
+            for (int i = 0; i < files.Length; i++)
+            {
+                if (files[i].Name != "data.dat")
+                {
+                    path = @$"..\..\..\..\Data\clients\{id}\{files[i].Name}";
+                    order = LoadOrder(path);
+                    Console.Write($"{i + 1} -> {order.Description}, {order.DeadLine.Date.Year}.{order.DeadLine.Date.Month}.{order.DeadLine.Date.Day}");
+                    if (!order.Actual)
+                        Console.WriteLine($"  Oder is done");
+                    else
+                        Console.WriteLine($"  Oder isn't done");
+                }
+            }
+        }
+        public void SaveOrder(string id, Order order)
+        {
+            string path = @$"..\..\..\..\Data\clients\{id}\";
+            DirectoryInfo di = new DirectoryInfo(path);
+            FileInfo[] files = di.GetFiles("*.dat");
+
+            int fileCounter = 1;
+            string FileName = $"{fileCounter}.dat";
+            for (int i = 0; i < files.Length; i++)
+            {
+                if (files[i].Name != "data.dat" && files[i].Name != FileName)
+                {
+                    break;
+                }
+                else
+                {
+                    fileCounter++;
+                    FileName = $"{fileCounter}.dat";
+                    Console.WriteLine($"GILECOUNTER: {FileName}");
+                }
+            }
+            FileName = $"{fileCounter}.dat";
+            // Окончательный путь файла
+            path += $"{FileName}";
+            // Запись заказа
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                bf.Serialize(fs, order);
+            }
+            Console.WriteLine("               Order was successfully created! ");
+        }
+        public Order LoadOrder(string path)
+        {
+            Order order = new Order();
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+               order  = (Order)bf.Deserialize(fs);
+            }
+            return order;
         }
     }
 }
