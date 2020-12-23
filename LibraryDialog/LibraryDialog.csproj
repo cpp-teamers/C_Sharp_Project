@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientDialog.cs" />
+    <Compile Include="DirectorDialog.cs" />
     <Compile Include="ManagerDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepairManDialog.cs" />
