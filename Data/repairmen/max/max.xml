@@ -20,5 +20,6 @@
   <IsFree>true</IsFree>
   <PathsOfOrders>
     <string>..\..\..\..\Data\clients\980944\6.dat</string>
+    <string>..\..\..\..\Data\clients\980944\1.dat</string>
   </PathsOfOrders>
 </RepairMan>

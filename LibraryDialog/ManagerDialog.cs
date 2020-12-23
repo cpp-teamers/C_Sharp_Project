@@ -25,6 +25,8 @@ namespace LibraryDialog
             {
                 Console.WriteLine($"\n CharException: {err.Message}");
                 Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                Console.WriteLine("\n Press any key");
+                Console.ReadKey();
                 return false;
             }
         }
@@ -45,6 +47,8 @@ namespace LibraryDialog
             {
                 Console.WriteLine($"\n IntException: {err.Message}");
                 Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                Console.WriteLine("\n Press any key");
+                Console.ReadKey();
                 return 0;
             }
         }
@@ -77,6 +81,8 @@ namespace LibraryDialog
             {
                 Console.WriteLine($"\n IntException: {err.Message}");
                 Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                Console.WriteLine("\n Press any key");
+                Console.ReadKey();
                 return 0;
             }
         }
@@ -97,6 +103,8 @@ namespace LibraryDialog
             {
                 Console.WriteLine($"\n IntException: {err.Message}");
                 Console.WriteLine($" InvalidateValue: {err.Parametr}");
+                Console.WriteLine("\n Press any key");
+                Console.ReadKey();
                 return 0;
             }
         }

@@ -46,6 +46,8 @@ namespace ManagerModule
                                             break;
                                         default:
                                             Console.WriteLine("!UNKNOWN PARAMS!"); // Exception
+                                            Console.WriteLine("\n Press any key");
+                                            Console.ReadKey();
                                             break;
                                     }
                                     
@@ -64,6 +66,8 @@ namespace ManagerModule
                         break;
                     default:
                         Console.WriteLine("!UNKNOWN PARAMS!");
+                        Console.WriteLine("\n Press any key");
+                        Console.ReadKey();
                         break;
                 }
             } while (ManagerMenu.counterOfIncorrect < 3 && ManagerMenu.exit);
