@@ -4,7 +4,10 @@ using System.Text;
 
 namespace DirectorModule
 {
-    class Director
+    [Serializable]
+    public class Director
     {
+        public string Name { get; set; }
+        public string Password { get; set; }
     }
 }
