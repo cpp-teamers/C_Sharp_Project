@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryDialog\LibraryDialog.csproj" />
+    <ProjectReference Include="..\LibraryExceptions\LibraryExceptions.csproj" />
     <ProjectReference Include="..\LibraryMenu\LibraryMenu.csproj" />
   </ItemGroup>
 

@@ -57,7 +57,7 @@ namespace ManagerModule
                     {
                         ring = false;
                     } // Выход из метода!!
-                    else if (num > orders.Count)
+                    else if (num > orders.Count || num <= 0)
                     {
                         Console.WriteLine(" !!You choose unexcited orders!!");
                     } // Exception
@@ -85,7 +85,7 @@ namespace ManagerModule
                             {
                                 ring2 = false;
                             }
-                            else if (num > repairs.Count)
+                            else if (num > repairs.Count || num <= 0)
                             {
                                 Console.WriteLine(" !!You choose unexcited repairMen!!"); // Exception
                             }
