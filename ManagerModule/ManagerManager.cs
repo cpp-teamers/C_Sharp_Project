@@ -80,7 +80,7 @@ namespace ManagerModule
                             }
                             Console.WriteLine($"{repairs.Count}. Back");
                             Console.WriteLine("==========================================");
-                            num = dialog.ChoosenOrders();
+                            num = dialog.ChoosenRepairs();
                             if (repairs.Count == num) // Выход из вложенного цикла!!
                             {
                                 ring2 = false;
