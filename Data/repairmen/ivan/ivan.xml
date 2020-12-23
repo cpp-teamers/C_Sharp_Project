@@ -18,4 +18,9 @@
   <Rate>100</Rate>
   <Experience>12</Experience>
   <IsFree>true</IsFree>
+  <PathsOfOrders>
+    <string>..\..\..\..\Data\clients\980944\7.dat</string>
+    <string>..\..\..\..\Data\clients\980944\5.dat</string>
+    <string>..\..\..\..\Data\clients\980944\3.dat</string>
+  </PathsOfOrders>
 </RepairMan>

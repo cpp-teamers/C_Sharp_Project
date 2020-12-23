@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.IO;
 using Library1;
+using System.Xml.Serialization;
 
 namespace ManagerModule
 {
@@ -13,6 +14,7 @@ namespace ManagerModule
         private string path_clients = @"..\..\..\..\Data\clients\";
         private string path_repairs = @"..\..\..\..\Data\repairmen\";
         private BinaryFormatter bf = new BinaryFormatter();
+        private XmlSerializer xml = new XmlSerializer(typeof(RepairMan));
 
         public bool PasswordIsCorrect(string login, string password)
         {
@@ -36,19 +38,19 @@ namespace ManagerModule
             return manager;
         }
 
-        public SortedList<Order, string> GetNotDistributedOrders()
+        public SortedList<string, Order> GetNotDistributedOrders()
         {
             DirectoryInfo di = new DirectoryInfo(path_clients);
             DirectoryInfo[] directories = di.GetDirectories();
             FileInfo[] files = null;
 
-            SortedList<Order, string> orders = new SortedList<Order, string>();
+            SortedList<string, Order> orders = new SortedList<string, Order>();
             string path;
             Order order = null;
 
             foreach(var directory in directories)
             {
-                files = di.GetFiles("^[0-9]$.dat");
+                files = directory.GetFiles("?.dat");
                 foreach (var file in files)
                 {
                     path = path_clients + directory.Name+ @"\" + file.Name;
@@ -56,7 +58,7 @@ namespace ManagerModule
                     {
                         order = (Order)bf.Deserialize(fs);
                         if (order.Actual)
-                            orders.Add(order, path);
+                            orders.Add(path, order);
                     }
                 }
             }
@@ -71,24 +73,24 @@ namespace ManagerModule
             }
         }
 
-        public SortedList<RepairMan, string> GetRepairsMan()
+        public SortedList<string, RepairMan> GetRepairsMan()
         {
             DirectoryInfo di = new DirectoryInfo(path_repairs);
             DirectoryInfo[] directories = di.GetDirectories();
             FileInfo[] files = null;
 
-            SortedList<RepairMan, string> repairs = new SortedList<RepairMan, string>();
+            SortedList<string, RepairMan> repairs = new SortedList<string, RepairMan>();
             string path;
             RepairMan repair = null;
 
             foreach(var directory in directories)
             {
-                files = di.GetFiles("*.dat");
+                files = directory.GetFiles("*.xml");
                 path = path_repairs + directory.Name + @"\" + files[0].Name;
                 using(FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    repair = (RepairMan)bf.Deserialize(fs);
-                    repairs.Add(repair, path);
+                    repair = (RepairMan)xml.Deserialize(fs);
+                    repairs.Add(path, repair);
                 }
             }
             return repairs;
@@ -98,7 +100,7 @@ namespace ManagerModule
         {
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Write))
             {
-                bf.Serialize(fs, repair);
+                xml.Serialize(fs, repair);
             }
         }
 
