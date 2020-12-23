@@ -153,6 +153,7 @@ namespace LibraryDialog
             repairMan.Age = age;
             repairMan.Rate = 8.0;
             repairMan.Salary = salary;
+            repairMan.PathsOfOrders = new List<string>();
 
             Console.WriteLine($"\n               Manager {name,4} {surname,7} was successfully created!");
             // Console.WriteLine("               Press any key to continue.");

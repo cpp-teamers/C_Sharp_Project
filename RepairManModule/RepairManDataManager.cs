@@ -5,7 +5,7 @@ using Library1;
 using LibraryMenu;
 using System.Linq;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace RepairManModule
 {
@@ -13,13 +13,14 @@ namespace RepairManModule
     {
         string path;
         public RepairMan rm;
-        SortedList<string, Order> curr_order;
+        Dictionary<string, Order> curr_order = new Dictionary<string, Order>();
         XmlSerializer serializer;
-
+        BinaryFormatter bf;
 
         public RepairManDataManager()
         {
             serializer = new XmlSerializer(typeof(RepairMan));
+            bf = new BinaryFormatter();
         }
 
         public void SaveData()
@@ -66,14 +67,18 @@ namespace RepairManModule
             }
         }
 
-        private void LoadTasks(string name)
+        private void LoadTasks()
         {
-            path = @$"..\..\..\..\Data\repairmen\{name}\CurrentOrder.xml";
+            List<Order> orders = new List<Order>();
 
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read))
-            {
-                
-            }
+			foreach (var path in rm.PathsOfOrders)
+			{
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    curr_order.Add(path, (Order)bf.Deserialize(fs));
+                }
+			}
+
         }
 
         public bool LogIn()
@@ -167,14 +172,22 @@ namespace RepairManModule
 
         public void DisplayCurrentTasks()
 		{
-            
+            int j = 0;
+			foreach (var item in curr_order)
+			{
+                Console.WriteLine($"{j + 1}.\n");
+                Console.WriteLine(curr_order.Values);
+			}
 		}
 
-        public void MarkTaskReadyness()
+        public void MarkTaskReady()
+        {
+            
+        }
+        public void MarkInProgress()
         {
 
         }
-
     }
 }
 

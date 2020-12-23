@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<RepairMan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Ivan</Name>
+  <Surname>Ivanenko</Surname>
+  <Patronymic>Ivanovych</Patronymic>
+  <Age>40</Age>
+  <Adress>
+    <City>Kyiv</City>
+    <Street>Hewchenka</Street>
+    <NumOfBlock>21B</NumOfBlock>
+    <NumOfApartment>450</NumOfApartment>
+  </Adress>
+  <AccountData>
+    <Password>50464</Password>
+    <Login>228Ivan</Login>
+  </AccountData>
+  <Salary>1000</Salary>
+  <Rate>100</Rate>
+  <Experience>12</Experience>
+  <IsFree>true</IsFree>
+  <PathsOfOrders>
+    <string>..\..\..\..\Data\clients\980944\7.dat</string>
+    <string>..\..\..\..\Data\clients\980944\5.dat</string>
+    <string>..\..\..\..\Data\clients\980944\3.dat</string>
+  </PathsOfOrders>
+</RepairMan>
