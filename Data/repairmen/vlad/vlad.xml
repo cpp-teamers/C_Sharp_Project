@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RepairMan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>vlad</Name>
+  <Surname>pupkin</Surname>
+  <Patronymic>vasilovich</Patronymic>
+  <Age>34</Age>
+  <Adress>
+    <City>Kyiv</City>
+    <Street>Draizera</Street>
+    <NumOfBlock>6</NumOfBlock>
+    <NumOfApartment>342</NumOfApartment>
+  </Adress>
+  <AccountData>
+    <Password>vlad</Password>
+    <Login>vlad@gmail.com</Login>
+  </AccountData>
+  <Salary>1300</Salary>
+  <Rate>8</Rate>
+  <Experience>0</Experience>
+  <IsFree>false</IsFree>
+  <PathsOfOrders />
+</RepairMan>
