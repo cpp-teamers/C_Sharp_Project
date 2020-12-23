@@ -13,7 +13,7 @@ namespace RepairManModule
     {
         string path;
         public RepairMan rm;
-        Dictionary<string, Order> curr_order = new Dictionary<string, Order>();
+        List<Order> curr_order;
         XmlSerializer serializer;
         BinaryFormatter bf;
 
@@ -68,17 +68,37 @@ namespace RepairManModule
         }
         private void LoadTasks()
         {
-            List<Order> orders = new List<Order>();
+            //List<Order> orders = new List<Order>();
+            curr_order = new List<Order>();
 
-			foreach (var path in rm.PathsOfOrders)
+
+
+            foreach (var path in rm.PathsOfOrders)
 			{
+                
                 using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    curr_order.Add(path, (Order)bf.Deserialize(fs));
+                    curr_order.Add((Order)bf.Deserialize(fs));
                 }
 			}
 
         }
+        public void SaveTasks()
+        {
+            //path += @"\vasyan.xml";
+            int j = 0;
+
+            foreach (string p in rm.PathsOfOrders)
+            {
+
+                using (FileStream fs = new FileStream(p, FileMode.Open, FileAccess.Write))
+                {
+                    bf.Serialize(fs, curr_order[j]);
+                }
+                j++;
+            }   
+        }
+
 
         public bool LogIn()
         {
@@ -171,21 +191,53 @@ namespace RepairManModule
 
         public void DisplayCurrentTasks()
 		{
-            int j = 0;
-			foreach (var item in curr_order)
+
+            LoadTasks();
+
+            foreach (var item in curr_order)
 			{
-                Console.WriteLine($"{j + 1}.\n");
-                Console.WriteLine(curr_order.Values);
+                Console.WriteLine(item);
 			}
 		}
 
         public void MarkTaskReady()
         {
-            
+            try
+            {
+
+
+                Console.Write("\n> What task you would like to mark as ready: ");
+                Int32.TryParse(Console.ReadLine(), out int choice);
+                //LoadTasks();
+
+                curr_order[choice-1].Actual= false;
+
+                SaveTasks();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Sorry there is no such position");
+            }
         }
         public void MarkInProgress()
         {
 
+            try
+            {
+
+
+                Console.Write("\n> What task you would like to mark as ready: ");
+                Int32.TryParse(Console.ReadLine(), out int choice);
+                //LoadTasks();
+
+                curr_order[choice - 1].Actual = true;
+
+                SaveTasks();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Sorry there is no such position");
+            }
         }
     }
 }
