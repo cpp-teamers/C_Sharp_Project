@@ -16,7 +16,7 @@ namespace LibraryDialog
 
         public int ChoosenParametr()
         {
-            Console.Write("> Choose Params => ");
+            Console.Write("\n> Choose Params => ");
             return Convert.ToInt32(Console.ReadLine());
         }
 
@@ -30,6 +30,12 @@ namespace LibraryDialog
         {
             Console.Write("\n Input password => ");
             return Convert.ToString(Console.ReadLine());
+        }
+
+        public int ChoosenOrders()
+        {
+            Console.Write("\n> Choose Order, Which you want to distribute => ");
+            return Convert.ToInt32(Console.ReadLine());
         }
     }
 }

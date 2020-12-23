@@ -13,6 +13,7 @@ namespace ManagerModule
             ManagerMenu menu = new ManagerMenu();
             ManagerDialog dialog = new ManagerDialog();
             ManagerDataManager dataManager = new ManagerDataManager();
+            ManagerManager mm = new ManagerManager();
             ManagerMenu.exit = true;
 
             do
@@ -34,15 +35,16 @@ namespace ManagerModule
                                     switch (dialog.ChoosenParametr())
                                     {
                                         case 1:
-
+                                            mm.DisplayNotDistributedOrders(dataManager);
                                             break;
                                         case 2:
+                                            mm.DistributeOrders(dataManager, dialog);
                                             break;
                                         case 3:
                                             ManagerMenu.exit = false;
                                             break;
                                         default:
-                                            Console.WriteLine("!UNKNOWN PARAMS!");
+                                            Console.WriteLine("!UNKNOWN PARAMS!"); // Exception
                                             break;
                                     }
 
@@ -50,7 +52,7 @@ namespace ManagerModule
                             }
                             else
                             {
-                                Console.WriteLine($"\n> Login or password is incorrect!!! Left {3 - ManagerMenu.counterOfIncorrect} try");
+                                Console.WriteLine($"\n> Login or password is incorrect!!! Left {2 - ManagerMenu.counterOfIncorrect} try");
                                 ManagerMenu.counterOfIncorrect++;
                             }
                         } while (ManagerMenu.counterOfIncorrect < 3 && ManagerMenu.exit);
@@ -62,7 +64,9 @@ namespace ManagerModule
                         Console.WriteLine("!UNKNOWN PARAMS!");
                         break;
                 }
-            } while (ManagerMenu.exit && dialog.AllowContinue());
+            } while (ManagerMenu.counterOfIncorrect < 3 && ManagerMenu.exit && dialog.AllowContinue());
+
+            Console.WriteLine("\n\nFinish");
         }
     }
 }

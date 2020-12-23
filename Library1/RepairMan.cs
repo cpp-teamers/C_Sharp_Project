@@ -10,6 +10,8 @@ namespace Library1
     public class RepairMan : Employee
     {
         public bool IsFree { get; set; }
+        public List<string> PathsOfOrders { get; set; }
+
         public void DisplayRepairMan()
         {
             DisplayEmployee();

@@ -9,13 +9,14 @@ namespace ManagerModule
 {
     class ManagerDataManager
     {
-        private string path_managers = @"..\..\..\..\Data\menegers\";
+        private string path_managers = @"..\..\..\..\Data\managers\";
         private string path_clients = @"..\..\..\..\Data\clients\";
+        private string path_repairs = @"..\..\..\..\Data\repairmen\";
         private BinaryFormatter bf = new BinaryFormatter();
 
         public bool PasswordIsCorrect(string login, string password)
         {
-            string path = path_clients + login + @"\" + "data.dat";
+            string path = path_managers + login + @"\" + "data.dat";
             Manager manager = null;
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
@@ -26,7 +27,7 @@ namespace ManagerModule
 
         public Manager GetManager(string login)
         {
-            string path = path_clients + login + @"\" + "data.dat";
+            string path = path_managers + login + @"\" + "data.dat";
             Manager manager = null;
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
@@ -35,13 +36,13 @@ namespace ManagerModule
             return manager;
         }
 
-        public List<Order> GetNotDistributedOrders(string login) // достроить логику
+        public SortedList<Order, string> GetNotDistributedOrders()
         {
             DirectoryInfo di = new DirectoryInfo(path_clients);
             DirectoryInfo[] directories = di.GetDirectories();
             FileInfo[] files = null;
 
-            List<Order> orders = new List<Order>();
+            SortedList<Order, string> orders = new SortedList<Order, string>();
             string path;
             Order order = null;
 
@@ -55,11 +56,52 @@ namespace ManagerModule
                     {
                         order = (Order)bf.Deserialize(fs);
                         if (order.Actual)
-                            orders.Add(order);
+                            orders.Add(order, path);
                     }
                 }
             }
             return orders;
         }
+
+        public void SaveOrder(Order order, string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Write))
+            {
+                bf.Serialize(fs, order);
+            }
+        }
+
+        public SortedList<RepairMan, string> GetRepairsMan()
+        {
+            DirectoryInfo di = new DirectoryInfo(path_repairs);
+            DirectoryInfo[] directories = di.GetDirectories();
+            FileInfo[] files = null;
+
+            SortedList<RepairMan, string> repairs = new SortedList<RepairMan, string>();
+            string path;
+            RepairMan repair = null;
+
+            foreach(var directory in directories)
+            {
+                files = di.GetFiles("*.dat");
+                path = files[0].FullName;
+                using(FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    repair = (RepairMan)bf.Deserialize(fs);
+                    repairs.Add(repair, path);
+                }
+            }
+            return repairs;
+        }
+
+        public void SaveRepairMan(RepairMan repair, string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Write))
+            {
+                bf.Serialize(fs, repair);
+            }
+        }
+
+
     }
 }
