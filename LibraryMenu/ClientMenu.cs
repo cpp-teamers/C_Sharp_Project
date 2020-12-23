@@ -13,16 +13,18 @@ public class ClientMenu
         Console.WriteLine("               │              1. Registration               │");
         Console.WriteLine("               │              2. Log in                     │");
         Console.WriteLine("               │              3. Show price list            │");
+        Console.WriteLine("               │              4. Exit                       │");
         Console.WriteLine("               ╘════════════════════════════════════════════╛");
     }
-    public void LogInMenu(ref Client client)
+    public void LogInMenu(Client client)
     {
         Console.WriteLine("               ╒════════════════════════════════════════════╕");
-       Console.WriteLine($"               │         Welcome, {client.Name}!            │");
+       Console.WriteLine($"                         Welcome, {client.Name}!            ");
         Console.WriteLine("               │────────────────────────────────────────────│");
         Console.WriteLine("               │           1. Create new form               │");
         Console.WriteLine("               │           2. Show all my orders            │");
         Console.WriteLine("               │           3. Log out                       │");
+        Console.WriteLine("               │           4. Exit                          │");
         Console.WriteLine("               ╘════════════════════════════════════════════╛");
     }
     public void FinishProgramm()

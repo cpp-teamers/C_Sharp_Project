@@ -23,22 +23,6 @@ namespace LibraryDialog
             }
             return answer;
         }
-        public int Choice()
-        {
-            int choice = -1;
-            try
-            {
-                Console.Write("\n               Please, input choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
-                if (choice > 3 || choice < 1)
-                    throw new Exception("\n               You have entered an invalid value!");
-            }
-            catch(Exception err)
-            {
-                Console.WriteLine($"\n               ERR: {err.Message}");
-            }
-            return choice;
-        }
         public void CreateClient(Client client, string LoginId)
         {
 
@@ -82,11 +66,21 @@ namespace LibraryDialog
             Console.WriteLine("               Press any key to continue.");
             Console.ReadKey();
         }
-        public string InputId()
+        public int Choice()
         {
-            Console.Write("               Input your id -> ");
-            string id = Console.ReadLine();
-            return id;
+            int choice = -1;
+            try
+            {
+                Console.Write("\n               Please, input choice: ");
+                choice = Convert.ToInt32(Console.ReadLine());
+                if (choice > 4 || choice < 1)
+                    throw new Exception("\n               You have entered an invalid value!");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"\n               ERR: {err.Message}");
+            }
+            return choice;
         }
     }
 }
